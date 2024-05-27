@@ -32,35 +32,35 @@ const userData = [
       thoughts: [],
       friends: [],
     },
-  ];
+];
 
 const thoughtData = [
     {
-      thoughtText: "Just finished a great workout!",
+      thoughtText: "Just finished a great workout!", // Correct field name
       username: "JohnDoe",
       reactions: [],
     },
     {
-      thoughtText: "Excited about the new project!",
+      thoughtText: "Excited about the new project!", // Correct field name
       username: "JaneSmith",
       reactions: [],
     },
     {
-      thoughtText: "Love this sunny weather!",
+      thoughtText: "Love this sunny weather!", // Correct field name
       username: "AliceWonder",
       reactions: [],
     },
     {
-      thoughtText: "Can't wait for the weekend!",
+      thoughtText: "Can't wait for the weekend!", // Correct field name
       username: "BobJohnson",
       reactions: [],
     },
     {
-      thoughtText: "What a beautiful day!",
+      thoughtText: "What a beautiful day!", // Correct field name
       username: "EmilyDavis",
       reactions: [],
     },
-  ];
+];
 
 const reactionData = [
     {
@@ -108,6 +108,7 @@ connection.once("open", async () => {
   
     await Thought.findByIdAndUpdate(thought._id, { $push: { reactions: reactionData[i] } });
   }
+
   // Create some friendships
   await User.findOneAndUpdate(
     { username: "JohnDoe" },
@@ -119,10 +120,9 @@ connection.once("open", async () => {
     { $addToSet: { friends: users[0]._id, friends: users[2]._id } } 
   );
 
-
   console.table(users);
   console.info("Users seeded");
-  console.table(thoughts);
+  console.table(thoughtData);
   console.info("Thoughts seeded");
 
   process.exit(0);

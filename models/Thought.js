@@ -1,4 +1,5 @@
-const { Schema, model } = require("mongoose");
+const mongoose = require("mongoose");
+const { Schema, model } = mongoose;
 const reactionSchema = require("./Reaction.js"); // Import the schema, not the model
 const dateFormat = require("../utils/dateFormat");
 
@@ -8,7 +9,7 @@ const thoughtSchema = new Schema(
       type: Schema.Types.ObjectId,
       default: () => new mongoose.Types.ObjectId(),
     },
-    thought: {
+    thoughtText: {
       type: String,
       required: true,
       minlength: 1,
