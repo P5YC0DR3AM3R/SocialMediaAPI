@@ -6,19 +6,23 @@
 ## Below is a short description:
 
 ### What was your motivation?
-I was motivated to build this project to easily build a list of friends and react to their thoughts.
+
+I wanted to create a platform where users could easily share their thoughts and connect with friends. I was particularly interested in learning how to leverage a NoSQL database like MongoDB to manage the data.
 
 ### Why did you build this project?
-It is a useful tool to reference the use of a noSQL database.  It is designed to practice all of the things I have learned in class.
+
+This project is a practical application of concepts learned in the course, providing a valuable learning experience in building APIs, working with databases, and handling real-world data interactions.
 
 ### What problem does it solve?
-It provides a single place to show reactions to the thoughts of my friends.
+
+This API addresses the need for a simple yet effective way to create and manage a social network, allowing users to share thoughts, react to posts, and maintain a friend list.
 
 ### What did you learn?
+
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
 ![Insomnia](https://img.shields.io/badge/Insomnia-4000BF.svg?style=for-the-badge&logo=Insomnia&logoColor=white)
 
-MongoDB Compass, Express, JavaScript, Insomnia
+This project solidified my understanding of MongoDB, Express.js, JavaScript, and RESTful API design. I also gained experience in testing APIs using Insomnia and managing data with MongoDB Compass.
 
 ## Table of Contents
 
@@ -27,18 +31,25 @@ MongoDB Compass, Express, JavaScript, Insomnia
 - [License](#license)
 - [Contributing](#contributing)
 - [Tests](#tests)
-- [Email](#email)
+- [Questions](#questions)
 
 ## Installation
-npm start
+
+1. Clone this repository: `git clone https://github.com/P5YC0DR3AM3R/SocialMediaAPI.git`
+2. Navigate to the project directory: `cd SocialMediaAPI`
+3. Install dependencies: `npm install`
+4. Start the server: `npm start`
 
 ## Usage
 
 [![GitHub](https://badgen.net/badge/icon/github?icon=github&label)](https://github.com/P5YC0DR3AM3R/SocialMediaAPI)
 
-https://github.com/P5YC0DR3AM3R/SocialMediaAPI
+- Visit the GitHub repository: https://github.com/P5YC0DR3AM3R/SocialMediaAPI
+- Watch the walkthrough video below to see the API in action:
 
 <video src="./Assets/Sequence_1.MP4" controls></video>
+
+- Use a tool like Insomnia or Postman to interact with the API endpoints.
 
 ## License
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
