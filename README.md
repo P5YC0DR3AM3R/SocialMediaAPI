@@ -7,22 +7,22 @@
 
 ### What was your motivation?
 
-I wanted to create a platform where users could easily share their thoughts and connect with friends. I was particularly interested in learning how to leverage a NoSQL database like MongoDB to manage the data.
+      I wanted to create a platform where users could easily share their thoughts and connect with friends. I was particularly interested in learning how to leverage a NoSQL database like MongoDB to manage the data.
 
 ### Why did you build this project?
 
-This project is a practical application of concepts learned in the course, providing a valuable learning experience in building APIs, working with databases, and handling real-world data interactions.
+      This project is a practical application of concepts learned in the course, providing a valuable learning experience in building APIs, working with databases, and handling real-world data interactions.
 
 ### What problem does it solve?
 
-This API addresses the need for a simple yet effective way to create and manage a social network, allowing users to share thoughts, react to posts, and maintain a friend list.
+      This API addresses the need for a simple yet effective way to create and manage a social network, allowing users to share thoughts, react to posts, and maintain a friend list.
 
 ### What did you learn?
 
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
 ![Insomnia](https://img.shields.io/badge/Insomnia-4000BF.svg?style=for-the-badge&logo=Insomnia&logoColor=white)
 
-This project solidified my understanding of MongoDB, Express.js, JavaScript, and RESTful API design. I also gained experience in testing APIs using Insomnia and managing data with MongoDB Compass.
+      This project solidified my understanding of MongoDB, Express.js, JavaScript, and RESTful API design. I also gained experience in testing APIs using Insomnia and managing data with MongoDB Compass.
 
 ## Table of Contents
 
@@ -35,10 +35,7 @@ This project solidified my understanding of MongoDB, Express.js, JavaScript, and
 
 ## Installation
 
-1. Clone this repository: `git clone https://github.com/P5YC0DR3AM3R/SocialMediaAPI.git`
-2. Navigate to the project directory: `cd SocialMediaAPI`
-3. Install dependencies: `npm install`
-4. Start the server: `npm start`
+`npm start`
 
 ## Usage
 
@@ -47,9 +44,9 @@ This project solidified my understanding of MongoDB, Express.js, JavaScript, and
 - Visit the GitHub repository: https://github.com/P5YC0DR3AM3R/SocialMediaAPI
 - Watch the walkthrough video below to see the API in action:
 
-<video src="./Assets/Sequence_1.MP4" controls></video>
+      <video src="./Images/Sequence_1.MP4" controls></video>
 
-- Use a tool like Insomnia or Postman to interact with the API endpoints.
+- Use a tool like Insomnia to interact with the API endpoints.
 
 ## License
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
@@ -57,23 +54,24 @@ This project solidified my understanding of MongoDB, Express.js, JavaScript, and
 <details>
       <summary>MIT License</summary>
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+      Permission is hereby granted, free of charge, to any person obtaining a copy
+      of this software and associated documentation files (the "Software"), to deal
+      in the Software without restriction, including without limitation the rights
+      to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+      copies of the Software, and to permit persons to whom the Software is
+      furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+      The above copyright notice and this permission notice shall be included in all
+      copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.</details>
+      THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+      IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+      FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+      AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+      LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+      OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+      SOFTWARE.
+</details>
 
 ## Contributing
 Email the author for more information about how to contribute to the project, or how to help fund it in the future.
