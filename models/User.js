@@ -40,6 +40,10 @@ const userSchema = new Schema(
 userSchema.virtual("friendCount").get(function () {
   return this.friends.length;
 });
+// Virtual for thought count
+userSchema.virtual('thoughtCount').get(function () {
+  return this.thoughts.length;
+});
 
 const User = model("User", userSchema);
 

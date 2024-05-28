@@ -5,11 +5,23 @@ const userController = {
   // get all users
   async getUsers(req, res) {
     try {
-      const users = await User.find().populate('thoughts'); // Fetch users with thoughts populated
-      res.json(users);
+      const users = await User.find({})
+        .populate({
+          path: 'thoughts',
+          select: '-__v' // Exclude the __v field from thoughts
+        })
+        .select('-__v'); // Exclude the __v field from users
+
+      // Add thoughtCount to each user object
+      const usersWithThoughtCount = users.map(user => ({
+        ...user.toObject(), // Spread the user's properties
+        thoughtCount: user.thoughts.length
+      }));
+
+      res.json(usersWithThoughtCount);
     } catch (err) {
-      console.error(err); // Log the error for debugging
-      return res.status(500).json(err); // Handle server errors
+      console.error(err); 
+      return res.status(500).json(err); 
     }
   },
   
