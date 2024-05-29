@@ -54,22 +54,22 @@ const thoughtController = {
         return res.status(404).json({ message: "No thought with this id!" });
       }
   
-      const user = await User.findOneAndUpdate( // Assign result to 'user'
+      const user = await User.findOneAndUpdate(
         { _id: thought.userId },
         { $pull: { thoughts: thought._id } },
         { new: true }
       );
   
       if (!user) {
-        return res.status(404).json({ message: "User not found" });
+        return res.status(404).json({ message: "User not found, but thought deleted." }); // More specific
       }
   
       res.json({ message: "Thought and associated reactions deleted!" });
     } catch (err) {
-      console.error("Error deleting thought:", err); // More specific error
-      res.status(500).json({ message: "Failed to delete thought" }); // Custom error message
+      console.error("Error deleting thought:", err);
+      res.status(500).json({ message: "Failed to delete thought" });
     }
-  },
+  },  
   
   // Update Thought
   async updateThought(req, res) {
