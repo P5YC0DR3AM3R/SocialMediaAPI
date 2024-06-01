@@ -1,10 +1,10 @@
-const { Schema, model } = require("mongoose"); 
-const reactionSchema = require("./Reaction"); // Import the reaction model (not just the schema)
+const { Schema, model } = require("mongoose");
+const reactionSchema = require("./Reaction"); // Correctly import the reactionSchema
 const dateFormat = require("../utils/dateFormat");
 
 const thoughtSchema = new Schema(
   {
-    thoughtText: { // No need for a thoughtId, MongoDB will automatically assign an _id
+    thoughtText: {
       type: String,
       required: true,
       minlength: 1,
@@ -19,19 +19,19 @@ const thoughtSchema = new Schema(
       type: String,
       required: true,
     },
-    reactions: [reactionSchema], 
-    userId: { // Added to link thoughts to the user who created them
+    reactions: [reactionSchema], // Array of subdocuments using reactionSchema
+    userId: { // Add userId to link thoughts to the user who created them
       type: Schema.Types.ObjectId,
-      ref: 'User',  // Reference the User model
-      required: true
-    }
+      ref: 'User',
+      required: true,
+    },
   },
   {
     toJSON: {
       virtuals: true,
-      getters: true, // Include getters (for formatted createdAt)
+      getters: true,
     },
-    id: false, // Prevent a duplicate _id field from being created
+    id: false,
   }
 );
 

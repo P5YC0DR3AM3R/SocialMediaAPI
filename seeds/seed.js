@@ -1,5 +1,6 @@
 const connection = require("../config/connection");
-const { User, Thought } = require("../models");
+const { User, Thought, Reaction } = require("../models");
+const dateFormat = require("../utils/dateFormat");
 
 const userData = [
   {
@@ -43,21 +44,25 @@ const thoughtData = [
   {
     thoughtText: "Excited about the new project!", 
     username: "JaneSmith",
+    createdAt: Date.now(),
     reactions: [],
   },
   {
     thoughtText: "Love this sunny weather!", 
     username: "AliceWonder",
+    createdAt: Date.now(),
     reactions: [],
   },
   {
     thoughtText: "Can't wait for the weekend!", 
     username: "BobJohnson",
+    createdAt: Date.now(),
     reactions: [],
   },
   {
     thoughtText: "What a beautiful day!", 
     username: "EmilyDavis",
+    createdAt: Date.now(),
     reactions: [],
   },
 ];
@@ -95,20 +100,23 @@ connection.once("open", async () => {
 
   const users = await User.insertMany(userData);
 
-  // Associate thoughts with users and reactions with thoughts
-  for (let i = 0; i < thoughtData.length; i++) {
-    const thought = await Thought.create(thoughtData[i]);
-    const user = users.find((user) => user.username === thought.username);
+  const thoughtsWithReactions = thoughtData.map((thought, index) => {
+    return {
+      ...thought,
+      reactions: [reactionData[index]], // Embed the raw reaction (Date object)
+      userId: users.find(user => user.username === thought.username)._id // Associate userId
+    };
+  });
 
+  const thoughts = await Thought.insertMany(thoughtsWithReactions);
+
+  for (let i = 0; i < thoughts.length; i++) {
+    const user = users.find((user) => user.username === thoughts[i].username);
     await User.findOneAndUpdate(
       { _id: user._id },
-      { $push: { thoughts: thought._id } },
+      { $push: { thoughts: thoughts[i]._id } },
       { new: true }
     );
-
-    await Thought.findByIdAndUpdate(thought._id, {
-      $push: { reactions: reactionData[i] },
-    });
   }
 
   // Create some friendships
@@ -124,7 +132,7 @@ connection.once("open", async () => {
 
   console.table(users);
   console.info("Users seeded");
-  console.table(thoughtData);
+  console.table(thoughtsWithReactions);  // Show thoughts with reactions
   console.info("Thoughts seeded");
 
   process.exit(0);
