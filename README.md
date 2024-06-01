@@ -44,7 +44,7 @@
 - Visit the GitHub repository: https://github.com/P5YC0DR3AM3R/SocialMediaAPI
 - Watch the walkthrough video below to see the API in action:
 
-      <video src="./Images/Sequence_1.MP4" controls></video>
+<video src="./Images/Sequence_1.MP4" controls></video>
 
 - Use a tool like Insomnia to interact with the API endpoints.
 
