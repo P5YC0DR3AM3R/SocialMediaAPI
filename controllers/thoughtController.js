@@ -29,13 +29,21 @@ const thoughtController = {
   // Add Thought to User
   async createThought(req, res) {
     try {
-      // Remove potential thoughtId from request body
-      const { thoughtId, ...thoughtData } = req.body; 
+      const { userId, ...thoughtData } = req.body;
 
-      const thought = await Thought.create(thoughtData);
+      // Check if userId is present
+      if (!userId) {
+        return res.status(400).json({ message: "userId is required" });
+      }
+
+      const thought = await Thought.create({
+        ...thoughtData,
+        userId: userId // Explicitly add userId to thoughtData
+      });
+
       await User.findByIdAndUpdate(
-        thoughtData.userId, 
-        { $push: { thoughts: thought._id } }, 
+        userId,
+        { $push: { thoughts: thought._id } },
         { new: true }
       );
 
@@ -46,50 +54,31 @@ const thoughtController = {
     }
   },
 
-  // async createThought(req, res) {
-  //   try {
-  //     const thought = await Thought.create(req.body);
-  //     const user = await User.findOneAndUpdate(
-  //       { _id: req.body.userId },
-  //       { $push: { thoughts: thought._id } },
-  //       { new: true }
-  //     ).populate('thoughts');
-
-  //     if (!user) {
-  //       return res.status(404).json({ message: "User not found" });
-  //     }
-  //     res.json(user);
-  //   } catch (err) {
-  //     console.error("Error creating thought:", err);
-  //     res.status(500).json({ message: "Failed to create thought" });
-  //   }
-  // },
-
   async deleteThought(req, res) {
     try {
       const thought = await Thought.findOneAndDelete({ _id: req.params.thoughtId });
-  
+
       if (!thought) {
         return res.status(404).json({ message: "No thought with this id!" });
       }
-  
+
       const user = await User.findOneAndUpdate(
         { _id: thought.userId },
         { $pull: { thoughts: thought._id } },
         { new: true }
       );
-  
+
       if (!user) {
         return res.status(404).json({ message: "User not found, but thought deleted." }); // More specific
       }
-  
+
       res.json({ message: "Thought and associated reactions deleted!" });
     } catch (err) {
       console.error("Error deleting thought:", err);
       res.status(500).json({ message: "Failed to delete thought" });
     }
-  },  
-  
+  },
+
   // Update Thought
   async updateThought(req, res) {
     try {

@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+const Thought = require("./Thought");
 
 const userSchema = new Schema(
   {
@@ -50,6 +51,16 @@ userSchema
   .get(function () {
     return this.thoughts.length;
   });
+
+  // Middleware to delete associated thoughts when a user is deleted
+userSchema.pre(/deleteOne|deleteMany|findOneAndDelete/, async function (next) {
+  const userQuery = this.getFilter ? this.getFilter() : { _id: this._id }; // Handle both query and document middleware
+  const user = await this.model.findOne(userQuery);
+  if (user) {
+    await Thought.deleteMany({ userId: user._id });
+  }
+  next();
+});
 
 const User = model("User", userSchema);
 
