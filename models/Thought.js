@@ -1,15 +1,10 @@
-const mongoose = require("mongoose");
-const { Schema, model } = mongoose;
-const reactionSchema = require("./Reaction.js"); // Import the schema, not the model
+const { Schema, model } = require("mongoose"); 
+const reactionSchema = require("./Reaction"); // Import the reaction model (not just the schema)
 const dateFormat = require("../utils/dateFormat");
 
 const thoughtSchema = new Schema(
   {
-    thoughtId: {
-      type: Schema.Types.ObjectId,
-      default: () => new mongoose.Types.ObjectId(),
-    },
-    thoughtText: {
+    thoughtText: { // No need for a thoughtId, MongoDB will automatically assign an _id
       type: String,
       required: true,
       minlength: 1,
@@ -24,13 +19,19 @@ const thoughtSchema = new Schema(
       type: String,
       required: true,
     },
-    reactions: [reactionSchema], // Use the reactionSchema here
+    reactions: [reactionSchema], 
+    userId: { // Added to link thoughts to the user who created them
+      type: Schema.Types.ObjectId,
+      ref: 'User',  // Reference the User model
+      required: true
+    }
   },
   {
     toJSON: {
       virtuals: true,
+      getters: true, // Include getters (for formatted createdAt)
     },
-    id: false,
+    id: false, // Prevent a duplicate _id field from being created
   }
 );
 

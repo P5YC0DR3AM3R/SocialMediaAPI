@@ -1,5 +1,4 @@
 const { Schema, model } = require("mongoose");
-const thoughtSchema = require("./Thought");
 
 const userSchema = new Schema(
   {
@@ -7,13 +6,15 @@ const userSchema = new Schema(
       type: String,
       unique: true,
       required: true,
-      maxlength: 150,
+      trim: true,  // Trim whitespace from username
+      maxlength: 150,  // 150 is just an example, adjust as needed
     },
     email: {
       type: String,
       required: true,
       unique: true,
-      match: [/.+@.+\..+/, "Please enter a valid e-mail address"],
+      trim: true, 
+      match: [/.+@.+\..+/, "Please enter a valid e-mail address"], // Email validation
     },
     friends: [
       {
@@ -23,27 +24,32 @@ const userSchema = new Schema(
     ],
     thoughts: [
       {
-        type: Schema.Types.ObjectId, // Array of thought IDs
-        ref: "Thought",  // Reference to the Thought model 
+        type: Schema.Types.ObjectId,
+        ref: "Thought",
       },
     ],
   },
   {
     toJSON: {
       virtuals: true,
+      getters: true,  // Optionally include getters if you have any
     },
-    id: false,
+    id: false, // Prevent a duplicate _id field from being created
   }
 );
 
-// Virtual for friend count
-userSchema.virtual("friendCount").get(function () {
-  return this.friends.length;
-});
-// Virtual for thought count
-userSchema.virtual('thoughtCount').get(function () {
-  return this.thoughts.length;
-});
+// Virtuals for friend and thought counts
+userSchema
+  .virtual("friendCount")
+  .get(function () {
+    return this.friends.length;
+  });
+
+userSchema
+  .virtual("thoughtCount")
+  .get(function () {
+    return this.thoughts.length;
+  });
 
 const User = model("User", userSchema);
 

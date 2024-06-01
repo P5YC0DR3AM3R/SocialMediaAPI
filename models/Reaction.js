@@ -1,6 +1,5 @@
-const { Schema, Types } = require("mongoose");
+const { Schema, model, Types } = require("mongoose");
 const dateFormat = require("../utils/dateFormat");
-
 
 const reactionSchema = new Schema(
   {
@@ -11,7 +10,7 @@ const reactionSchema = new Schema(
     reactionBody: {
       type: String,
       required: true,
-      maxlength: 255, // Limit to 280 characters
+      maxlength: 280,
     },
     username: {
       type: String,
@@ -19,16 +18,18 @@ const reactionSchema = new Schema(
     },
     createdAt: {
       type: Date,
-      default: Date.now, // Set to current timestamp
-      get: (timestamp) => dateFormat(timestamp), // Format using dateFormat util
+      default: Date.now,
+      get: (timestamp) => dateFormat(timestamp),
     },
   },
   {
     toJSON: {
-      getters: true, // Enable the getter for createdAt
+      getters: true,
     },
     id: false, // Prevent a duplicate _id field from being created
   }
 );
 
-module.exports = reactionSchema; // Export the schema
+const Reaction = model('Reaction', reactionSchema); // define as model
+
+module.exports = Reaction; // Export the model
